@@ -19,7 +19,7 @@ resource "github_repository" "example" {
     visibility  = "public"
     license_template = "mit"
     auto_init = true
-    vulnerabilities_alerts = true
+    vulnerability_alerts = true
 }
 
 resource "github_repository_file" "support_policy" {
