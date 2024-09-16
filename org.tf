@@ -149,7 +149,7 @@ resource "github_branch_protection_v3" "example" {
     branch         = "main"
     require_signed_commits = true
     require_conversation_resolution = true
-#    enforce_admins = true # Ensure repository does not allow bypassing of branch protections rules
+    enforce_admins = true # Ensure repository does not allow bypassing of branch protections rules
     #required_pull_request_reviews {
     #    dismiss_stale_reviews = true
     #    require_code_owner_reviews = true
