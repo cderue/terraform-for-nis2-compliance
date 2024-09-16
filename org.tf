@@ -81,6 +81,7 @@ resource "github_branch_protection_v3" "example" {
   repository     = github_repository.example.name
   branch         = "main"
   require_signed_commits = true
+  require_conversation_resolution = true
 }
 
 resource "github_repository_file" "getting_started" {
