@@ -93,3 +93,23 @@ resource "github_branch_protection_v3" "example" {
   branch         = "main"
   require_signed_commits = true
 }
+
+resource "github_repository_dispatch" "dependabot" {
+    repository = github_repository.example.name
+    event_type = "dependabot"
+}
+
+resource "github_workflow" "dependabot" {
+    repository = github_repository.example.name
+    name       = "Dependabot"
+    on         = "repository_dispatch"
+    resolves   = ["dependabot"]
+}
+
+resource "github_workflow_run" "dependabot" {
+    repository = github_repository.example.name
+    workflow   = github_workflow.dependabot.id
+    event      = "repository_dispatch"
+    branch     = "main"
+    ref        = "refs/heads/main"
+}
