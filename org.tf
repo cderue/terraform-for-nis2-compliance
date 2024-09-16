@@ -156,3 +156,35 @@ resource "github_branch_protection_v3" "example" {
     }
 }
 
+/*
+resource "github_actions_workflow" "dependabot" {
+    repository = github_repository.example.name
+    name       = "Dependabot"
+    on         = "push"
+    resolves   = ["Dependabot"]
+}
+
+resource "github_actions_workflow_run" "dependabot" {
+    workflow_id = github_actions_workflow.dependabot.id
+    name        = "Dependabot"
+    branch      = "main"
+    ref         = "refs/heads/main"
+    event       = "push"
+    status      = "completed"
+    conclusion  = "success"
+}
+
+resource "github_actions_workflow_job" "dependabot" {
+    workflow_run_id = github_actions_workflow_run.dependabot.id
+    name            = "Dependabot"
+    status          = "completed"
+    conclusion      = "success"
+}*/
+
+resource "github_repository_dependabot_security_updates" "example" {
+  repository  = github_repository.example.id
+  enabled     = true
+}
+
+
+
