@@ -88,10 +88,6 @@ resource "github_branch_protection_v3" "example" {
         require_code_owner_reviews = true
         required_approving_review_count = 1
     }
-    restrictions {
-        users = ["user1", "user2"]
-        teams = ["team1", "team2"]
-    }
 }
 
 resource "github_repository_file" "getting_started" {
