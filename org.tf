@@ -152,7 +152,7 @@ resource "github_branch_protection_v3" "example" {
     enforce_admins = true
     required_status_checks {
         strict = true
-        contexts = ["continuous-integration"]
+        checks = ["continuous-integration"]
     }
 }
 
