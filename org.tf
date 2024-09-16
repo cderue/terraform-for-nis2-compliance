@@ -17,6 +17,7 @@ resource "github_repository" "example" {
     name        = "my-public-repo"
     description = "My public repository"
     visibility  = "public"
+    auto_init = true
 }
 
 resource "github_repository_file" "example" {
