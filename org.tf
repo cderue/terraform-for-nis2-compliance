@@ -20,17 +20,6 @@ resource "github_repository" "example" {
     auto_init = true
 }
 
-resource "github_repository_file" "example" {
-  repository          = github_repository.example.name
-  branch              = "main"
-  file                = "README.md"
-  content             = "my-public-repo"
-  commit_message      = "Add README.md"
-  commit_author       = "CEDRIC DERUE"
-  commit_email        = "cedric.derue@hashicaps.com"
-  overwrite_on_create = true
-}
-
 resource "github_repository_file" "support_policy" {
     repository          = github_repository.example.name
     branch              = "main"
@@ -94,22 +83,28 @@ resource "github_branch_protection_v3" "example" {
   require_signed_commits = true
 }
 
-resource "github_repository_dispatch" "dependabot" {
-    repository = github_repository.example.name
-    event_type = "dependabot"
-}
+resource "github_repository_file" "getting_started" {
+    repository          = github_repository.example.name
+    branch              = "main"
+    file                = "README.md"
+    content             = <<EOF
+# My Public Repository
 
-resource "github_workflow" "dependabot" {
-    repository = github_repository.example.name
-    name       = "Dependabot"
-    on         = "repository_dispatch"
-    resolves   = ["dependabot"]
-}
+Welcome to my public repository!
 
-resource "github_workflow_run" "dependabot" {
-    repository = github_repository.example.name
-    workflow   = github_workflow.dependabot.id
-    event      = "repository_dispatch"
-    branch     = "main"
-    ref        = "refs/heads/main"
+## Getting Started
+
+To get started with this repository, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/hashicaps/my-public-repo.git`
+2. Install the necessary dependencies.
+3. Run the application.
+
+Enjoy exploring the code and contributing to the project!
+
+EOF
+    commit_message      = "Update README.md"
+    commit_author       = "CEDRIC DERUE"
+    commit_email        = "cedric.derue@hashicaps.com"
+    overwrite_on_create = false
 }
