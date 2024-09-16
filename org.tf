@@ -50,3 +50,22 @@ EOF
     commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
+
+resource "github_repository_file" "security_policy" {
+    repository          = github_repository.example.name
+    branch              = "main"
+    file                = "SECURITY.md"
+    content             = <<EOF
+# Security Policy
+
+This repository follows the security policy outlined below:
+
+- Security vulnerabilities should be reported by opening an issue.
+- For sensitive security-related matters, please contact our security team at security@example.com.
+
+EOF
+    commit_message      = "Add SECURITY.md"
+    commit_author       = "CEDRIC DERUE"
+    commit_email        = "cedric.derue@hashicaps.com"
+    overwrite_on_create = true
+}
