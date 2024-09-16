@@ -78,10 +78,20 @@ EOF
 }
 
 resource "github_branch_protection_v3" "example" {
-  repository     = github_repository.example.name
-  branch         = "main"
-  require_signed_commits = true
-  require_conversation_resolution = true
+    repository     = github_repository.example.name
+    branch         = "main"
+    require_signed_commits = true
+    require_conversation_resolution = true
+    enforce_admins = true
+    required_pull_request_reviews {
+        dismiss_stale_reviews = true
+        require_code_owner_reviews = true
+        required_approving_review_count = 1
+    }
+    restrictions {
+        users = ["user1", "user2"]
+        teams = ["team1", "team2"]
+    }
 }
 
 resource "github_repository_file" "getting_started" {
