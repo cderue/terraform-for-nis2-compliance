@@ -17,5 +17,15 @@ resource "github_repository" "example" {
     name        = "my-public-repo"
     description = "My public repository"
     visibility  = "public"
-    license_template = "mit"
+}
+
+resource "github_repository_file" "example" {
+  repository          = github_repository.example.name
+  branch              = "main"
+  file                = "README.md"
+  content             = "my-public-repo"
+  commit_message      = "Add README.md"
+  commit_author       = "CEDRIC DERUE"
+  commit_email        = "cedric.derue@hashicaps.com"
+  overwrite_on_create = true
 }
