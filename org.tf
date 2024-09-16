@@ -70,6 +70,24 @@ EOF
     overwrite_on_create = true
 }
 
+resource "github_repository_file" "code_of_conduct" {
+    repository          = github_repository.example.name
+    branch              = "main"
+    file                = "CODE_OF_CONDUCT.md"
+    content             = <<EOF
+# Code of Conduct
+
+We expect all contributors to adhere to our code of conduct when participating in our project.
+
+Please refer to the full version of our code of conduct [here](https://example.com/code-of-conduct).
+
+EOF
+    commit_message      = "Add CODE_OF_CONDUCT.md"
+    commit_author       = "CEDRIC DERUE"
+    commit_email        = "cedric.derue@hashicaps.com"
+    overwrite_on_create = true
+}
+
 resource "github_branch_protection_v3" "example" {
   repository     = github_repository.example.name
   branch         = "main"
