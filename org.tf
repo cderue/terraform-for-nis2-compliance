@@ -1,9 +1,20 @@
-provider "github" {
-    token = var.github_token
+terraform {
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "~> 6.0"
+    }
+  }
 }
 
-resource "github_organization" "decepticons" {
-    name        = "decepticons"
-    description = "GitHub organization for Decepticons"
-    admin_team  = "Owners"
+provider "github" {
+    token = var.github_token
+    owner = "hashicaps"
+}
+
+
+resource "github_repository" "example" {
+    name        = "my-public-repo"
+    description = "My public repository"
+    visibility  = "public"
 }
