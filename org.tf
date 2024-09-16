@@ -69,3 +69,9 @@ EOF
     commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
+
+resource "github_branch_protection_v3" "example" {
+  repository     = github_repository.example.name
+  branch         = "main"
+  require_signed_commits = true
+}
