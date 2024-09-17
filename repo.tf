@@ -26,6 +26,10 @@ resource "github_repository" "example" {
     #vulnerability_alerts = true
 }
 
+##############################################
+### Ensure repository has a support policy ###
+##############################################
+
 resource "github_repository_file" "support_policy" {
     repository          = github_repository.example.name
     branch              = "main"
@@ -46,6 +50,10 @@ EOF
     overwrite_on_create = true
 }
 
+###################################################
+### Ensure repository defines a security policy ###
+###################################################
+
 resource "github_repository_file" "security_policy" {
     repository          = github_repository.example.name
     branch              = "main"
@@ -65,6 +73,10 @@ EOF
     overwrite_on_create = true
 }
 
+#########################################################
+### Ensure repository has a CODE_OF_CONDUCT.md policy ###
+#########################################################
+
 resource "github_repository_file" "code_of_conduct" {
     repository          = github_repository.example.name
     branch              = "main"
@@ -83,6 +95,11 @@ EOF
     overwrite_on_create = true
 }
 
+###########################################################
+### Ensure the README.md includes getting started guide ###
+###                                                     ###
+### Ensure the README.md includes authors               ###
+###########################################################
 
 resource "github_repository_file" "getting_started" {
     repository          = github_repository.example.name
@@ -119,6 +136,7 @@ EOF
 ############################################
 ### Ensure repository declares a license ###
 ############################################
+
 resource "github_repository_file" "license" {
     repository          = github_repository.example.name
     branch              = "main"
@@ -156,7 +174,12 @@ resource "github_branch_protection_v3" "example" {
     repository     = github_repository.example.name
     branch         = "main"
     require_signed_commits = true
-    # require_conversation_resolution = true
+
+    ################################################################################
+    ### Ensure branch protection requires conversation resolution before merging ###
+    ################################################################################
+
+    require_conversation_resolution = true 
     enforce_admins = true
     required_status_checks {
         strict = true
@@ -215,5 +238,21 @@ resource "github_actions_workflow_job" "dependabot" {
 ############################################################
 ### Ensure repository does not generate binary artifacts ###
 ############################################################
-                             
+        
+###############################################################                             
+### Ensure GitHub repository release branches are protected ###
+###############################################################
+resource "github_branch_protection_v3" "release_branches" {
+    repository = github_repository.example.name
+    branch     = "release/*"
 
+    require_signed_commits = true
+
+    require_conversation_resolution = true
+    enforce_admins                 = true
+
+    required_status_checks {
+        strict  = true
+        checks  = ["continuous-integration"]
+    }
+}
