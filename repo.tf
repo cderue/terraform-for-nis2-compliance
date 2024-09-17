@@ -12,6 +12,10 @@ provider "github" {
     owner = "hashicaps"
 }
 
+#locals {
+ # dependabot_yaml = yamldecode(file("dependabot.yaml"))
+#}
+
 
 resource "github_repository" "example" {
     name        = "my-public-repo"
@@ -19,7 +23,7 @@ resource "github_repository" "example" {
     visibility  = "public"
     license_template = "mit"
     auto_init = true
-    vulnerability_alerts = true
+    #vulnerability_alerts = true
 }
 
 resource "github_repository_file" "support_policy" {
@@ -157,6 +161,24 @@ resource "github_branch_protection_v3" "example" {
     }
 }
 
+resource "github_repository_file" "dependabot" {
+    repository          = github_repository.example.name
+    branch              = "main"
+    file                = ".github/dependabot.yml"
+    content             = <<EOF
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+EOF
+    commit_message      = "Add .github/dependabot.yml"
+    commit_author       = "CEDRIC DERUE"
+    commit_email        = "cedric.derue@hashicaps.com"
+    overwrite_on_create = true
+}
+
 /*
 resource "github_actions_workflow" "dependabot" {
     repository = github_repository.example.name
@@ -182,10 +204,10 @@ resource "github_actions_workflow_job" "dependabot" {
     conclusion      = "success"
 }*/
 
-resource "github_repository_dependabot_security_updates" "example" {
-  repository  = github_repository.example.id
-  enabled     = true
-}
+#resource "github_repository_dependabot_security_updates" "example" {
+#  repository  = github_repository.example.id
+#  enabled     = true
+#}
 
 
 
