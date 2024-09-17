@@ -161,7 +161,6 @@ resource "github_branch_protection_v3" "example" {
     }*/
 }
 
-/*
 resource "github_repository_file" "dependabot" {
     repository          = github_repository.example.name
     branch              = "main"
@@ -178,7 +177,7 @@ EOF
     commit_author       = "CEDRIC DERUE"
     commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
-}*/
+}
 
 /*
 resource "github_actions_workflow" "dependabot" {
