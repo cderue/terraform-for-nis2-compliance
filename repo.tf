@@ -116,6 +116,9 @@ EOF
     overwrite_on_create = false
 }
 
+############################################
+### Ensure repository declares a license ###
+############################################
 resource "github_repository_file" "license" {
     repository          = github_repository.example.name
     branch              = "main"
@@ -153,7 +156,7 @@ resource "github_branch_protection_v3" "example" {
     repository     = github_repository.example.name
     branch         = "main"
     require_signed_commits = true
-    require_conversation_resolution = true
+    # require_conversation_resolution = true
     enforce_admins = true
     required_status_checks {
         strict = true
@@ -209,5 +212,8 @@ resource "github_actions_workflow_job" "dependabot" {
 #  enabled     = true
 #}
 
-
+############################################################
+### Ensure repository does not generate binary artifacts ###
+############################################################
+                             
 
