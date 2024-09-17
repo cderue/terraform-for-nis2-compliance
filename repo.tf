@@ -239,12 +239,12 @@ resource "github_actions_workflow_job" "dependabot" {
 ### Ensure repository does not generate binary artifacts ###
 ############################################################
         
-###############################################################                             
+###############################################################
 ### Ensure GitHub repository release branches are protected ###
 ###############################################################
 resource "github_branch_protection_v3" "release_branches" {
     repository = github_repository.example.name
-    branch     = "release/*"
+    branch     = "release/v2.0.0"
 
     require_signed_commits = true
 
