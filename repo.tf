@@ -18,7 +18,6 @@ resource "github_repository" "example" {
     visibility  = "public"
     # license_template = "mit"
     auto_init = true
-    #vulnerability_alerts = true
 }
 
 ##############################################
