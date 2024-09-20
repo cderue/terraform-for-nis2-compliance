@@ -21,7 +21,7 @@ resource "github_repository" "example" {
     name        = "my-public-repo"
     description = "My public repository"
     visibility  = "public"
-    license_template = "mit"
+    # license_template = "mit"
     auto_init = true
     #vulnerability_alerts = true
 }
