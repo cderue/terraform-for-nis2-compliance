@@ -12,11 +12,6 @@ provider "github" {
     owner = "hashicaps"
 }
 
-#locals {
- # dependabot_yaml = yamldecode(file("dependabot.yaml"))
-#}
-
-
 resource "github_repository" "example" {
     name        = "my-public-repo"
     description = "My public repository"
