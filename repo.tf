@@ -249,3 +249,5 @@ resource "github_branch_protection_v3" "release_branches" {
         checks  = ["continuous-integration"]
     }
 }
+
+# test
