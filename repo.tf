@@ -166,7 +166,7 @@ EOF
 resource "github_branch_protection_v3" "example" {
     repository     = github_repository.example.name
     branch         = "main"
-    require_signed_commits = true
+    #require_signed_commits = true
 
     ################################################################################
     ### Ensure branch protection requires conversation resolution before merging ###
@@ -197,36 +197,6 @@ EOF
     commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
-
-/*
-resource "github_actions_workflow" "dependabot" {
-    repository = github_repository.example.name
-    name       = "Dependabot"
-    on         = "push"
-    resolves   = ["Dependabot"]
-}
-
-resource "github_actions_workflow_run" "dependabot" {
-    workflow_id = github_actions_workflow.dependabot.id
-    name        = "Dependabot"
-    branch      = "main"
-    ref         = "refs/heads/main"
-    event       = "push"
-    status      = "completed"
-    conclusion  = "success"
-}
-
-resource "github_actions_workflow_job" "dependabot" {
-    workflow_run_id = github_actions_workflow_run.dependabot.id
-    name            = "Dependabot"
-    status          = "completed"
-    conclusion      = "success"
-}*/
-
-#resource "github_repository_dependabot_security_updates" "example" {
-#  repository  = github_repository.example.id
-#  enabled     = true
-#}
 
 ############################################################
 ### Ensure repository does not generate binary artifacts ###
