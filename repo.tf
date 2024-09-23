@@ -16,17 +16,7 @@ resource "github_repository" "example" {
     name        = "my-public-repo"
     description = "My public repository"
     visibility  = "public"
-    #auto_init = true
-}
-
-resource "github_branch" "main" {
-  repository = github_repository.example.name
-  branch     = "main"
-}
-
-resource "github_branch_default" "default"{
-  repository = github_repository.example.name
-  branch     = github_branch.main.branch
+    auto_init = true
 }
 
 ##############################################
