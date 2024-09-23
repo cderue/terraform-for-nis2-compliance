@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "github" {
-    # token = var.github_token
     owner = "hashicaps"
     app_auth {
       id              = var.app_id              # or `GITHUB_APP_ID`
@@ -44,8 +43,6 @@ This repository follows the support policy outlined below:
 
 EOF
     commit_message      = "Add SUPPORT.md"
-    #commit_author       = "CEDRIC DERUE"
-    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
@@ -67,8 +64,6 @@ This repository follows the security policy outlined below:
 
 EOF
     commit_message      = "Add SECURITY.md"
-    #commit_author       = "CEDRIC DERUE"
-    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
@@ -89,8 +84,6 @@ Please refer to the full version of our code of conduct [here](https://example.c
 
 EOF
     commit_message      = "Add CODE_OF_CONDUCT.md"
-    #commit_author       = "CEDRIC DERUE"
-    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
@@ -127,8 +120,6 @@ Enjoy exploring the code and contributing to the project!
 
 EOF
     commit_message      = "Update README.md"
-    #commit_author       = "CEDRIC DERUE"
-    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
@@ -164,12 +155,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 EOF
     commit_message      = "Add LICENSE"
-    #commit_author       = "CEDRIC DERUE"
-    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
-resource "github_branch_protection_v3" "example" {
+resource "github_repository_file" "dependabot" {
+    repository          = github_repository.example.name
+    branch              = "main"
+    file                = ".github/dependabot.yml"
+    content             = <<EOF
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+EOF
+    commit_message      = "Add .github/dependabot.yml"
+    overwrite_on_create = true
+}
+
+resource "github_branch_protection_v3" "main" {
     depends_on = [github_repository_file.support_policy, github_repository_file.security_policy, github_repository_file.license, github_repository_file.getting_started, github_repository_file.code_of_conduct, github_repository_file.dependabot]
     repository     = github_repository.example.name
     branch         = "main"
@@ -186,45 +191,3 @@ resource "github_branch_protection_v3" "example" {
     #    checks = ["continuous-integration"]
     #}
 }
-
-resource "github_repository_file" "dependabot" {
-    repository          = github_repository.example.name
-    branch              = "main"
-    file                = ".github/dependabot.yml"
-    content             = <<EOF
-version: 2
-updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-EOF
-    commit_message      = "Add .github/dependabot.yml"
-    #commit_author       = "CEDRIC DERUE"
-    #commit_email        = "cedric.derue@hashicaps.com"
-    overwrite_on_create = true
-}
-
-############################################################
-### Ensure repository does not generate binary artifacts ###
-############################################################
-        
-###############################################################
-### Ensure GitHub repository release branches are protected ###
-###############################################################
-#resource "github_branch_protection_v3" "release_branches" {
-#    repository = github_repository.example.name
-#    branch     = "release/v2.0.0"
-
-#    require_signed_commits = true
-
-#    require_conversation_resolution = true
-#    enforce_admins                 = true
-
-#    required_status_checks {
-#        strict  = true
-#        checks  = ["continuous-integration"]
-#    }
-#}
-
-# test
