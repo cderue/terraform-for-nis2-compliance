@@ -22,6 +22,7 @@ resource "github_repository" "example" {
     description = "My public repository"
     visibility  = "public"
     auto_init = true
+    vulnerability_alerts = true
 }
 
 ##############################################
