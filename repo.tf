@@ -19,6 +19,16 @@ resource "github_repository" "example" {
     #auto_init = true
 }
 
+resource "github_branch" "main" {
+  repository = github_repository.example.name
+  branch     = "main"
+}
+
+resource "github_branch_default" "default"{
+  repository = github_repository.example.name
+  branch     = github_branch.main.branch
+}
+
 ##############################################
 ### Ensure repository has a support policy ###
 ##############################################
