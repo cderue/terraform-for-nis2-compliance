@@ -164,6 +164,7 @@ EOF
 }
 
 resource "github_branch_protection_v3" "example" {
+    depends_on = [support_policy, security_policy, license, getting_started, code_of_conduct, dependabot]
     repository     = github_repository.example.name
     branch         = "main"
     require_signed_commits = true
