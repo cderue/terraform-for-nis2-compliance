@@ -38,8 +38,8 @@ This repository follows the support policy outlined below:
 
 EOF
     commit_message      = "Add SUPPORT.md"
-    commit_author       = "CEDRIC DERUE"
-    commit_email        = "cedric.derue@hashicaps.com"
+    #commit_author       = "CEDRIC DERUE"
+    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
@@ -61,8 +61,8 @@ This repository follows the security policy outlined below:
 
 EOF
     commit_message      = "Add SECURITY.md"
-    commit_author       = "CEDRIC DERUE"
-    commit_email        = "cedric.derue@hashicaps.com"
+    #commit_author       = "CEDRIC DERUE"
+    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
@@ -83,8 +83,8 @@ Please refer to the full version of our code of conduct [here](https://example.c
 
 EOF
     commit_message      = "Add CODE_OF_CONDUCT.md"
-    commit_author       = "CEDRIC DERUE"
-    commit_email        = "cedric.derue@hashicaps.com"
+    #commit_author       = "CEDRIC DERUE"
+    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
@@ -121,8 +121,8 @@ Enjoy exploring the code and contributing to the project!
 
 EOF
     commit_message      = "Update README.md"
-    commit_author       = "CEDRIC DERUE"
-    commit_email        = "cedric.derue@hashicaps.com"
+    #commit_author       = "CEDRIC DERUE"
+    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = false
 }
 
@@ -158,8 +158,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 EOF
     commit_message      = "Add LICENSE"
-    commit_author       = "CEDRIC DERUE"
-    commit_email        = "cedric.derue@hashicaps.com"
+    #commit_author       = "CEDRIC DERUE"
+    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
@@ -193,8 +193,8 @@ updates:
       interval: "daily"
 EOF
     commit_message      = "Add .github/dependabot.yml"
-    commit_author       = "CEDRIC DERUE"
-    commit_email        = "cedric.derue@hashicaps.com"
+    #commit_author       = "CEDRIC DERUE"
+    #commit_email        = "cedric.derue@hashicaps.com"
     overwrite_on_create = true
 }
 
