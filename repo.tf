@@ -123,7 +123,7 @@ EOF
     commit_message      = "Update README.md"
     #commit_author       = "CEDRIC DERUE"
     #commit_email        = "cedric.derue@hashicaps.com"
-    overwrite_on_create = false
+    overwrite_on_create = true
 }
 
 ############################################
