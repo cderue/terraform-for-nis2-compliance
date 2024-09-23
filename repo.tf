@@ -174,10 +174,10 @@ resource "github_branch_protection_v3" "example" {
 
     require_conversation_resolution = true 
     enforce_admins = true
-    required_status_checks {
-        strict = true
-        checks = ["continuous-integration"]
-    }
+    #required_status_checks {
+    #    strict = true
+    #    checks = ["continuous-integration"]
+    #}
 }
 
 resource "github_repository_file" "dependabot" {
@@ -205,19 +205,19 @@ EOF
 ###############################################################
 ### Ensure GitHub repository release branches are protected ###
 ###############################################################
-resource "github_branch_protection_v3" "release_branches" {
-    repository = github_repository.example.name
-    branch     = "release/v2.0.0"
+#resource "github_branch_protection_v3" "release_branches" {
+#    repository = github_repository.example.name
+#    branch     = "release/v2.0.0"
 
-    require_signed_commits = true
+#    require_signed_commits = true
 
-    require_conversation_resolution = true
-    enforce_admins                 = true
+#    require_conversation_resolution = true
+#    enforce_admins                 = true
 
-    required_status_checks {
-        strict  = true
-        checks  = ["continuous-integration"]
-    }
-}
+#    required_status_checks {
+#        strict  = true
+#        checks  = ["continuous-integration"]
+#    }
+#}
 
 # test
