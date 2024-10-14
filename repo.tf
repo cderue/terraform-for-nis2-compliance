@@ -186,8 +186,8 @@ resource "github_branch_protection_v3" "main" {
 
     require_conversation_resolution = true 
     enforce_admins = true
-    #required_status_checks {
-    #    strict = true
-    #    checks = ["continuous-integration"]
-    #}
+    required_status_checks {
+        strict = true
+        checks = ["continuous-integration"]
+    }
 }
